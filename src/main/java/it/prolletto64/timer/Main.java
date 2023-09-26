@@ -9,24 +9,9 @@ class Main {
 
     private static final Color FG = new Color(216, 222, 233);
     private static final Color BG = new Color(48, 54, 65);
-    private static final JFrame frame = new MyFrame();
+    private static final MyFrame frame = new MyFrame();
 
     public static void main(String[] args) {
-        JLabel label1 = new JLabel("ciao");
-        JLabel label2 = new JLabel("maybe will put something");
-        label1.setFont(label1.getFont().deriveFont(22.0f));
-        label2.setFont(label1.getFont());
-        frame.add(label1);
-        frame.add(label2);
-        frame.pack();
-        frame.setBackground(BG);
-        label1.setOpaque(true);
-        label2.setOpaque(true);
-        label1.setBackground(BG);
-        label2.setBackground(BG);
-        label1.setForeground(FG);
-        label2.setForeground(FG);
-        frame.repaint();
         LocalDateTime now;
         LocalDateTime tmp = LocalDateTime.now(ZoneId.systemDefault());
         int tmpSeconds2 = 61;
@@ -48,7 +33,7 @@ class Main {
             } else {
                 etichetta1 += Integer.toString(now.getSecond());
             }
-            label1.setText("ORA: " + etichetta1);
+            frame.setLabel1text("ORA: " + etichetta1);
             if (now.getSecond() != tmpSeconds2) {
                 tmp = tmp.withSecond(0);
                 frame.repaint();
@@ -64,6 +49,8 @@ class Main {
     }
 
     private static class MyFrame extends JFrame {
+        private final MyLabel l1 = new MyLabel("");
+        private final MyLabel l2 = new MyLabel("maye here'll go something");
         public MyFrame() {
             super("Ora");
             this.setAlwaysOnTop(true);
@@ -72,13 +59,30 @@ class Main {
             this.setVisible(true);
             this.setIconImage(new ImageIcon("res/icon.png").getImage());
             this.setLayout(new GridLayout(2, 1));
-        }
-
-        @Override
-        public void pack() {
-            super.pack();
+            this.setBackground(BG);
+            this.add(l1);
+            this.add(l2);
+            this.pack();
             this.setSize(300, this.getHeight());
             this.repaint();
+        }
+
+        public void setLabel1text(String text) {
+            l1.setText(text);
+        }
+
+        public void setLabel2text(String text) {
+            l2.setText(text);
+        }
+    }
+
+    private static class MyLabel extends JLabel {
+        private MyLabel(String text) {
+            super(text);
+            this.setFont(this.getFont().deriveFont(22.0f));
+            this.setForeground(FG);
+            this.setBackground(BG);
+            this.setOpaque(true);
         }
     }
 }

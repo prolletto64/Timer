@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9495cb32-e814-4f86-a84c-78a227652353" name="Changes" comment="">
+    <list default="true" id="9495cb32-e814-4f86-a84c-78a227652353" name="Changes" comment="extracted frame class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/it/prolletto64/timer/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/prolletto64/timer/Main.java" afterDir="false" />
     </list>
@@ -18,6 +18,11 @@
       <list>
         <option value="prolletto64 &lt;poiluonzo@mail.com&gt;" />
       </list>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SIGN_OFF_COMMIT" value="true" />
@@ -93,7 +98,23 @@
       <option name="project" value="LOCAL" />
       <updated>1695746757353</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="timer works">
+      <option name="closed" value="true" />
+      <created>1695748041485</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1695748041485</updated>
+    </task>
+    <task id="LOCAL-00004" summary="extracted frame class">
+      <option name="closed" value="true" />
+      <created>1695749161824</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1695749161824</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -101,7 +122,24 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="code-refactor" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -112,7 +150,9 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="configured ide" />
     <MESSAGE value="we have a frame" />
-    <option name="LAST_COMMIT_MESSAGE" value="we have a frame" />
+    <MESSAGE value="timer works" />
+    <MESSAGE value="extracted frame class" />
+    <option name="LAST_COMMIT_MESSAGE" value="extracted frame class" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
