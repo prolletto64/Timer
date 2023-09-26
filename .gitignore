@@ -13,5 +13,6 @@ target/
 *.iml
 *.ipr
 
-#wakatime
+#misc
 .wakatime-project
+res/
