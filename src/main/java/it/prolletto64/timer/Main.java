@@ -12,30 +12,29 @@ class Main {
     private static final MyFrame frame = new MyFrame();
 
     public static void main(String[] args) {
-        LocalDateTime now;
-        LocalDateTime tmp = LocalDateTime.now();
-        int tmpSeconds2 = 61;
-        String etichetta1;
-        while (true) {
-            now = LocalDateTime.now();
-            frame.setLabel1text("ORA: " + (DateTimeFormatter.ofPattern("HH:mm:ss")).format(now));
-            if (now.getSecond() != tmpSeconds2) {
-                tmp = tmp.withSecond(0);
-                frame.repaint();
-                tmpSeconds2 = now.getSecond();
+        new Thread(() -> {
+            int tmpSec=-1;
+            LocalDateTime now;
+            do {
+                now = LocalDateTime.now();
+                if(now.getSecond()!=tmpSec){
+                    frame.setLabel1text("ORA: "+(DateTimeFormatter.ofPattern("HH:mm:ss").format(now)));
+                    frame.repaint();
+                }
                 System.gc();
-            }
-            try {
-                Thread.sleep(1000);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } while (true);
+        }).start();
     }
+
 
     private static class MyFrame extends JFrame {
         private final MyLabel l1 = new MyLabel("");
-        private final MyLabel l2 = new MyLabel("maye here'll go something");
+        private final MyLabel l2 = new MyLabel("maye there'll go something");
         public MyFrame() {
             super("Ora");
             this.setAlwaysOnTop(true);
