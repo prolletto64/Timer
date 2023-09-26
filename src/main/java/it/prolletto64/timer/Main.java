@@ -3,7 +3,7 @@ package it.prolletto64.timer;
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 class Main {
 
@@ -13,27 +13,12 @@ class Main {
 
     public static void main(String[] args) {
         LocalDateTime now;
-        LocalDateTime tmp = LocalDateTime.now(ZoneId.systemDefault());
+        LocalDateTime tmp = LocalDateTime.now();
         int tmpSeconds2 = 61;
         String etichetta1;
         while (true) {
-            now = LocalDateTime.now(ZoneId.systemDefault());
-            if (now.getHour() < 10) {
-                etichetta1 = "0" + now.getHour() + ":";
-            } else {
-                etichetta1 = now.getHour() + ":";
-            }
-            if (now.getMinute() < 10) {
-                etichetta1 += "0" + now.getMinute() + ":";
-            } else {
-                etichetta1 += now.getMinute() + ":";
-            }
-            if (now.getSecond() < 10) {
-                etichetta1 += "0" + now.getSecond();
-            } else {
-                etichetta1 += Integer.toString(now.getSecond());
-            }
-            frame.setLabel1text("ORA: " + etichetta1);
+            now = LocalDateTime.now();
+            frame.setLabel1text("ORA: " + (DateTimeFormatter.ofPattern("HH:mm:ss")).format(now));
             if (now.getSecond() != tmpSeconds2) {
                 tmp = tmp.withSecond(0);
                 frame.repaint();
