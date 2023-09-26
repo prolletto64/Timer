@@ -6,31 +6,26 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 class Main {
+
+    private static final Color FG = new Color(216, 222, 233);
+    private static final Color BG = new Color(48, 54, 65);
+    private static final JFrame frame = new MyFrame();
+
     public static void main(String[] args) {
-        Color text = new Color(216, 222, 233);
-        Color bg = new Color(48, 54, 65);
-        JFrame frame = new JFrame("ORA");
-        frame.setAlwaysOnTop(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        frame.setVisible(true);
-        frame.setIconImage(new ImageIcon("res/icon.png").getImage());
         JLabel label1 = new JLabel("ciao");
         JLabel label2 = new JLabel("maybe will put something");
-        frame.setLayout(new GridLayout(2, 1));
         label1.setFont(label1.getFont().deriveFont(22.0f));
         label2.setFont(label1.getFont());
         frame.add(label1);
         frame.add(label2);
         frame.pack();
-        frame.setSize(300, frame.getHeight());
-        frame.setBackground(bg);
+        frame.setBackground(BG);
         label1.setOpaque(true);
         label2.setOpaque(true);
-        label1.setBackground(bg);
-        label2.setBackground(bg);
-        label1.setForeground(text);
-        label2.setForeground(text);
+        label1.setBackground(BG);
+        label2.setBackground(BG);
+        label1.setForeground(FG);
+        label2.setForeground(FG);
         frame.repaint();
         LocalDateTime now;
         LocalDateTime tmp = LocalDateTime.now(ZoneId.systemDefault());
@@ -65,6 +60,25 @@ class Main {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private static class MyFrame extends JFrame {
+        public MyFrame() {
+            super("Ora");
+            this.setAlwaysOnTop(true);
+            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.setResizable(false);
+            this.setVisible(true);
+            this.setIconImage(new ImageIcon("res/icon.png").getImage());
+            this.setLayout(new GridLayout(2, 1));
+        }
+
+        @Override
+        public void pack() {
+            super.pack();
+            this.setSize(300, this.getHeight());
+            this.repaint();
         }
     }
 }
