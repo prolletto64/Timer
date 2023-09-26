@@ -2,8 +2,12 @@ package it.prolletto64.timer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 class Main {
 
@@ -29,6 +33,39 @@ class Main {
                 }
             } while (true);
         }).start();
+
+        new Thread(()->{
+            File file=new File("res/quotes/"+Locale.getDefault());
+            if(!file.exists()||!file.isFile()){
+                file=new File("res/quotes/en_US");
+                if(!file.exists()||!file.isFile()){
+                    return;
+                }
+            }
+            List<String> quotes = new ArrayList<>();
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(file.getPath()));
+                String line;
+                do{
+                    line=reader.readLine();
+                    if(line==null){
+                        break;
+                    }
+                    quotes.add(line);
+                }while(true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            while (true){
+                frame.setLabel2text(quotes.get((int) (Math.random()*(quotes.size()+1))));
+                frame.pack();
+                try {
+                    Thread.sleep((int)(30000+(Math.random()*((300000-30000)+1))));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
 
@@ -46,8 +83,14 @@ class Main {
             this.setBackground(BG);
             this.add(l1);
             this.add(l2);
-            this.pack();
+            super.pack();
             this.setSize(300, this.getHeight());
+            this.repaint();
+        }
+
+        @Override
+        public void pack() {
+            super.pack();
             this.repaint();
         }
 
@@ -56,7 +99,7 @@ class Main {
         }
 
         public void setLabel2text(String text) {
-            l2.setText(text);
+            l2.setText("<html><p style=\"width:300px\">"+text+"</p></html>");
         }
     }
 
