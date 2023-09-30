@@ -19,3 +19,4 @@ target/
 .wakatime-project
 res/
 config.ini
+out/
