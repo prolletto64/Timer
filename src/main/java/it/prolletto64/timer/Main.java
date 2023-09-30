@@ -28,7 +28,7 @@ class Main {
                 f.createNewFile();
                 Wini ini = new Wini(f);
                 ini.put("settings","quotes",true);
-                ini.put("settings","locale","it_IT");
+                ini.put("settings","locale","en_US");
                 ini.store();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -82,6 +82,10 @@ class Main {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                if(quotes.isEmpty()){
+                    frame.removeL2();
+                    return;
+                }
                 while (true) {
                     frame.setLabel2text(quotes.get((int) (Math.random() * (quotes.size() + 1))));
                     frame.pack();
@@ -122,9 +126,8 @@ class Main {
         }
 
         private void resetSize(){
-            super.pack();
-            this.setLayout(new GridLayout(this.getComponentCount()+1,1));
-            int padding = this.getComponentCount()>1?0:30;
+            this.setLayout(new GridLayout(l2.isVisible()?2:1,1));
+            int padding = l2.isVisible() ? 0 : 30;
             this.setSize(300, this.getHeight()+padding);
             this.repaint();
         }
@@ -139,6 +142,7 @@ class Main {
 
         public void removeL2(){
             this.remove(l2);
+            l2.setVisible(false);
             this.resetSize();
         }
     }
