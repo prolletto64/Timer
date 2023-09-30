@@ -21,26 +21,27 @@ class Main {
     private static final Color BG = new Color(48, 54, 65);
     private static final MyFrame frame = new MyFrame();
     private static Wini config = null;
+
     public static void main(String[] args) {
-        File f =new File("config.ini");
-        if(!f.exists()||!f.isFile()){
+        File f = new File("config.ini");
+        if (!f.exists() || !f.isFile()) {
             try {
                 f.createNewFile();
                 Wini ini = new Wini(f);
-                ini.put("settings","quotes",true);
-                ini.put("settings","locale","en_US");
+                ini.put("settings", "quotes", true);
+                ini.put("settings", "locale", "en_US");
                 ini.store();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         new Thread(() -> {
-            int tmpSec=-1;
+            int tmpSec = -1;
             LocalDateTime now;
             do {
                 now = LocalDateTime.now();
-                if(now.getSecond()!=tmpSec){
-                    frame.setLabel1text("ORA: "+(DateTimeFormatter.ofPattern("HH:mm:ss").format(now)));
+                if (now.getSecond() != tmpSec) {
+                    frame.setLabel1text("ORA: " + (DateTimeFormatter.ofPattern("HH:mm:ss").format(now)));
                     frame.repaint();
                 }
                 System.gc();
@@ -56,7 +57,7 @@ class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        if(config.get("settings","quotes")==null|| Objects.equals(config.get("settings", "quotes"), "true")) {
+        if (config.get("settings", "quotes") == null || Objects.equals(config.get("settings", "quotes"), "true")) {
             new Thread(() -> {
                 File file = new File("res/quotes/" + Locale.getDefault());
                 if (config.get("settings", "locale") != null) {
@@ -82,7 +83,7 @@ class Main {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                if(quotes.isEmpty()){
+                if (quotes.isEmpty()) {
                     frame.removeL2();
                     return;
                 }
@@ -96,7 +97,7 @@ class Main {
                     }
                 }
             }).start();
-        }else{
+        } else {
             frame.removeL2();
         }
     }
@@ -105,6 +106,7 @@ class Main {
     private static class MyFrame extends JFrame {
         private final MyLabel l1 = new MyLabel("");
         private final MyLabel l2 = new MyLabel("maye there'll go something");
+
         public MyFrame() {
             super("Ora");
             this.setAlwaysOnTop(true);
@@ -125,10 +127,10 @@ class Main {
             this.repaint();
         }
 
-        private void resetSize(){
-            this.setLayout(new GridLayout(l2.isVisible()?2:1,1));
+        private void resetSize() {
+            this.setLayout(new GridLayout(l2.isVisible() ? 2 : 1, 1));
             int padding = l2.isVisible() ? 0 : 30;
-            this.setSize(300, this.getHeight()+padding);
+            this.setSize(300, this.getHeight() + padding);
             this.repaint();
         }
 
@@ -137,10 +139,10 @@ class Main {
         }
 
         public void setLabel2text(String text) {
-            l2.setText("<html><p style=\"width:300px\">"+text+"</p></html>");
+            l2.setText("<html><p style=\"width:300px\">" + text + "</p></html>");
         }
 
-        public void removeL2(){
+        public void removeL2() {
             this.remove(l2);
             l2.setVisible(false);
             this.resetSize();
