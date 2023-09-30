@@ -26,7 +26,6 @@ class Main {
         File f = new File("config.ini");
         if (!f.exists() || !f.isFile()) {
             try {
-                f.createNewFile();
                 Wini ini = new Wini(f);
                 ini.put("settings", "quotes", true);
                 ini.put("settings", "locale", "en_US");
