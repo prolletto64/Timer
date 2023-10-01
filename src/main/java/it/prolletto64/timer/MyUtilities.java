@@ -1,8 +1,11 @@
 package it.prolletto64.timer;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.Level;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.*;
 import java.net.URL;
 import java.nio.file.FileSystem;
@@ -16,6 +19,22 @@ import static it.prolletto64.timer.MyConfig.config;
 import static it.prolletto64.timer.MyConfig.logger;
 
 public class MyUtilities {
+
+    public static WindowAdapter windowClosingManager = new WindowAdapter() {
+        @Override
+        public void windowClosing(WindowEvent e) {
+            String protocol = Main.class.getResource("Main.class").getProtocol();
+            if (Objects.equals(protocol, "jar")) {
+                try {
+                    FileUtils.deleteDirectory(new File("res/"));
+                } catch (IOException ex) {
+                    logError(ex);
+                }
+                System.exit(0);
+            }
+        }
+    };
+
     public static void logError(Throwable e) {
         logger.log(Level.ERROR, e.getMessage());
     }
@@ -77,3 +96,4 @@ public class MyUtilities {
         return new File(path);
     }
 }
+

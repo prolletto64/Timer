@@ -5,6 +5,7 @@ import java.awt.*;
 
 import static it.prolletto64.timer.MyConfig.BG;
 import static it.prolletto64.timer.MyUtilities.getFileJarSafe;
+import static it.prolletto64.timer.MyUtilities.windowClosingManager;
 
 public class MyFrame extends JFrame {
     private final MyLabel l1 = new MyLabel("");
@@ -13,7 +14,8 @@ public class MyFrame extends JFrame {
     public MyFrame() {
         super("Ora");
         this.setAlwaysOnTop(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(windowClosingManager);
         this.setResizable(false);
         this.setVisible(true);
         this.setIconImage(new ImageIcon(getFileJarSafe("res/icon.png").getPath()).getImage());
