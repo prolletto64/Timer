@@ -14,6 +14,7 @@ import static it.prolletto64.timer.MyConfig.config;
 
 public class QuoteDrawer extends Thread {
 
+    @SuppressWarnings({"InfiniteLoopStatement", "BusyWait"})
     public QuoteDrawer(MyFrame frame) {
         super(() -> {
             File file = new File("res/quotes/" + Locale.getDefault());
@@ -30,13 +31,13 @@ public class QuoteDrawer extends Thread {
             try {
                 BufferedReader reader = new BufferedReader(new FileReader(file.getPath()));
                 String line;
-                do {
+                while (true) {
                     line = reader.readLine();
                     if (line == null) {
                         break;
                     }
                     quotes.add(line);
-                } while (true);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -45,7 +46,7 @@ public class QuoteDrawer extends Thread {
                 return;
             }
             while (true) {
-                frame.setLabel2text(quotes.get((int) (Math.random() * (quotes.size() + 1))));
+                frame.setLabel2text(quotes.get((int) (Math.random() * (quotes.size()))));
                 frame.pack();
                 try {
                     Thread.sleep((int) (30000 + (Math.random() * ((300000 - 30000) + 1))));
