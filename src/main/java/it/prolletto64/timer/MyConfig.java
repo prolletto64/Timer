@@ -11,24 +11,24 @@ public class MyConfig {
     public static final Color BG = new Color(48, 54, 65);
     public static final Wini config = getConfig("config.ini");
 
-    private static Wini getConfig(String path) {
-        Wini ini=null;
+    private static Wini getConfig(@SuppressWarnings("SameParameterValue") String path) {
+        Wini ini = null;
         File f = new File(path);
         if (!f.exists() || !f.isFile()) {
-            ini=createDefaultConfig(f);
-        }else{
+            ini = createDefaultConfig(f);
+        } else {
             try {
-                ini=new Wini(f);
+                ini = new Wini(f);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        assert ini!=null;
+        assert ini != null;
         return ini;
     }
 
     private static Wini createDefaultConfig(File f) {
-        Wini ini=null;
+        Wini ini = null;
         try {
             ini = new Wini(f);
             ini.put("quotes", "enabled", true);
@@ -37,7 +37,7 @@ public class MyConfig {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        assert ini!=null;
+        assert ini != null;
         return ini;
     }
 
