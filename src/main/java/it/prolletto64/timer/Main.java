@@ -4,9 +4,7 @@ import it.prolletto64.timer.graphics.MyFrame;
 import it.prolletto64.timer.threads.QuoteDrawer;
 import it.prolletto64.timer.threads.TimeDrawer;
 
-import java.util.Objects;
-
-import static it.prolletto64.timer.MyConfig.config;
+import static it.prolletto64.timer.MyConfig.areQuotesEnabled;
 
 public class Main {
 
@@ -15,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
 
         new TimeDrawer(frame).start();
-        if (config.get("quotes", "enabled") == null || Objects.equals(config.get("quotes", "enabled"), "true")) {
+        if (areQuotesEnabled()) {
             new QuoteDrawer(frame).start();
         } else {
             frame.removeL2();

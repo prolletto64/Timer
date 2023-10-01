@@ -7,6 +7,7 @@ import org.ini4j.Wini;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 import static it.prolletto64.timer.MyUtilities.logError;
 
@@ -46,5 +47,7 @@ public class MyConfig {
         return ini;
     }
 
-
+    public static boolean areQuotesEnabled() {
+        return (config.get("quotes", "enabled") == null || Objects.equals(config.get("quotes", "enabled"), "true"));
+    }
 }
