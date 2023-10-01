@@ -36,7 +36,7 @@ public class MyConfig {
     private static Wini createDefaultConfig(File f) {
         Wini ini = null;
         try {
-            if(!f.createNewFile()) {
+            if (!f.createNewFile()) {
                 logError(new Exception("Issues creating config file"));
                 System.exit(-111);
             }

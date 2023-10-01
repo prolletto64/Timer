@@ -22,7 +22,7 @@ public class MyUtilities {
 
     public static File getLocaleQuote() {
         File file = getFileJarSafe("res/quotes/" + Locale.getDefault());
-        if (!config.get("quotes", "locale").isEmpty() && config.get("quotes", "locale") != null){
+        if (!config.get("quotes", "locale").isEmpty() && config.get("quotes", "locale") != null) {
             file = getFileJarSafe("res/quotes/" + config.get("quotes", "locale"));
         }
         if (!file.exists() || !file.isFile()) {
