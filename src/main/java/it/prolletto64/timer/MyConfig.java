@@ -1,14 +1,19 @@
 package it.prolletto64.timer;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.ini4j.Wini;
 
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
+import static it.prolletto64.timer.MyUtilities.logError;
+
 public class MyConfig {
     public static final Color FG = new Color(216, 222, 233);
     public static final Color BG = new Color(48, 54, 65);
+    public static final Logger logger = LogManager.getLogger(Main.class);
     public static final Wini config = getConfig("config.ini");
 
     private static Wini getConfig(@SuppressWarnings("SameParameterValue") String path) {
@@ -20,7 +25,7 @@ public class MyConfig {
             try {
                 ini = new Wini(f);
             } catch (IOException e) {
-                e.printStackTrace();
+                logError(e);
             }
         }
         assert ini != null;
@@ -35,7 +40,7 @@ public class MyConfig {
             ini.put("quotes", "locale", "en_US");
             ini.store();
         } catch (IOException e) {
-            e.printStackTrace();
+            logError(e);
         }
         assert ini != null;
         return ini;

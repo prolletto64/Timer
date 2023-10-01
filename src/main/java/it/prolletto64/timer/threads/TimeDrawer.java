@@ -5,6 +5,8 @@ import it.prolletto64.timer.graphics.MyFrame;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import static it.prolletto64.timer.MyUtilities.logError;
+
 public class TimeDrawer extends Thread {
     @SuppressWarnings({"InfiniteLoopStatement", "BusyWait"})
     public TimeDrawer(MyFrame frame) {
@@ -21,7 +23,7 @@ public class TimeDrawer extends Thread {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logError(e);
                 }
             }
         });

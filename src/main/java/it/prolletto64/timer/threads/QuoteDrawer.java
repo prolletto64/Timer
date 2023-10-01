@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Locale;
 
 import static it.prolletto64.timer.MyConfig.config;
+import static it.prolletto64.timer.MyUtilities.logError;
 
 public class QuoteDrawer extends Thread {
 
@@ -39,7 +40,7 @@ public class QuoteDrawer extends Thread {
                     quotes.add(line);
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                logError(e);
             }
             if (quotes.isEmpty()) {
                 frame.removeL2();
@@ -51,7 +52,7 @@ public class QuoteDrawer extends Thread {
                 try {
                     Thread.sleep((int) (30000 + (Math.random() * ((300000 - 30000) + 1))));
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    logError(e);
                 }
             }
         });
