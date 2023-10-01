@@ -36,6 +36,7 @@ public class MyConfig {
     private static Wini createDefaultConfig(File f) {
         Wini ini = null;
         try {
+            f.createNewFile();
             ini = new Wini(f);
             ini.put("quotes", "enabled", true);
             ini.put("quotes", "locale", "en_US");

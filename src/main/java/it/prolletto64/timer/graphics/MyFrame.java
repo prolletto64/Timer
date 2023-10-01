@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import static it.prolletto64.timer.MyConfig.BG;
+import static it.prolletto64.timer.MyUtilities.getFileJarSafe;
 
 public class MyFrame extends JFrame {
     private final MyLabel l1 = new MyLabel("");
@@ -15,7 +16,7 @@ public class MyFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setVisible(true);
-        this.setIconImage(new ImageIcon("res/icon.png").getImage());
+        this.setIconImage(new ImageIcon(getFileJarSafe("res/icon.png").getPath()).getImage());
         this.setLayout(new GridLayout(2, 1));
         this.setBackground(BG);
         this.add(l1);
