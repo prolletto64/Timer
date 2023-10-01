@@ -2,14 +2,10 @@
   <artifact type="jar" name="Timer:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/Timer_jar</output-path>
     <root id="archive" name="Timer.jar">
-      <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
-      </element>
       <element id="module-output" name="Timer" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/ini4j/ini4j/0.5.4/ini4j-0.5.4.jar" path-in-jar="/" />
-      <element id="directory" name="res">
-        <element id="dir-copy" path="$PROJECT_DIR$/res" />
-      </element>
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/logging/log4j/log4j-api/2.20.0/log4j-api-2.20.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/logging/log4j/log4j-core/2.20.0/log4j-core-2.20.0.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
