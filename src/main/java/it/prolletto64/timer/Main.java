@@ -14,23 +14,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+import static it.prolletto64.timer.MyConfig.config;
+
 public class Main {
 
     private static final MyFrame frame = new MyFrame();
-    private static Wini config = null;
 
     public static void main(String[] args) {
-        File f = new File("config.ini");
-        if (!f.exists() || !f.isFile()) {
-            try {
-                Wini ini = new Wini(f);
-                ini.put("settings", "quotes", true);
-                ini.put("settings", "locale", "en_US");
-                ini.store();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+
         new Thread(() -> {
             int tmpSec = -1;
             LocalDateTime now;
@@ -48,16 +39,11 @@ public class Main {
                 }
             } while (true);
         }).start();
-        try {
-            config = new Wini(new File("config.ini"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        if (config.get("settings", "quotes") == null || Objects.equals(config.get("settings", "quotes"), "true")) {
+        if (config.get("quotes", "enabled") == null || Objects.equals(config.get("quotes", "enabled"), "true")) {
             new Thread(() -> {
                 File file = new File("res/quotes/" + Locale.getDefault());
-                if (config.get("settings", "locale") != null) {
-                    file = new File("res/quotes/" + config.get("settings", "locale"));
+                if (config.get("quotes", "locale") != null) {
+                    file = new File("res/quotes/" + config.get("quotes", "locale"));
                 }
                 if (!file.exists() || !file.isFile()) {
                     file = new File("res/quotes/en_US");
