@@ -1,9 +1,8 @@
 package it.prolletto64.timer;
 
+import it.prolletto64.timer.graphics.MyFrame;
 import org.ini4j.Wini;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -15,10 +14,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-class Main {
+public class Main {
 
-    private static final Color FG = new Color(216, 222, 233);
-    private static final Color BG = new Color(48, 54, 65);
     private static final MyFrame frame = new MyFrame();
     private static Wini config = null;
 
@@ -102,59 +99,4 @@ class Main {
     }
 
 
-    private static class MyFrame extends JFrame {
-        private final MyLabel l1 = new MyLabel("");
-        private final MyLabel l2 = new MyLabel("maye there'll go something");
-
-        public MyFrame() {
-            super("Ora");
-            this.setAlwaysOnTop(true);
-            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            this.setResizable(false);
-            this.setVisible(true);
-            this.setIconImage(new ImageIcon("res/icon.png").getImage());
-            this.setLayout(new GridLayout(2, 1));
-            this.setBackground(BG);
-            this.add(l1);
-            this.add(l2);
-            this.resetSize();
-        }
-
-        @Override
-        public void pack() {
-            super.pack();
-            this.repaint();
-        }
-
-        private void resetSize() {
-            this.setLayout(new GridLayout(l2.isVisible() ? 2 : 1, 1));
-            int padding = l2.isVisible() ? 0 : 30;
-            this.setSize(300, this.getHeight() + padding);
-            this.repaint();
-        }
-
-        public void setLabel1text(String text) {
-            l1.setText(text);
-        }
-
-        public void setLabel2text(String text) {
-            l2.setText("<html><p style=\"width:300px\">" + text + "</p></html>");
-        }
-
-        public void removeL2() {
-            this.remove(l2);
-            l2.setVisible(false);
-            this.resetSize();
-        }
-    }
-
-    private static class MyLabel extends JLabel {
-        private MyLabel(String text) {
-            super(text);
-            this.setFont(this.getFont().deriveFont(22.0f));
-            this.setForeground(FG);
-            this.setBackground(BG);
-            this.setOpaque(true);
-        }
-    }
 }
